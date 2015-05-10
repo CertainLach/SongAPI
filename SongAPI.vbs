@@ -164,7 +164,6 @@ Function dSongIdSongsterr(id)
 	objPattern = "s[0-9]*"
 	objRegExp.Pattern = objPattern
 	if objRegExp.test(id)=0 Then
-		msgbox id
 		Exit Function
 	End if
 	id=Split(id,"s")(1)
