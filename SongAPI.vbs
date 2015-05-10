@@ -15,7 +15,8 @@ Function dEncode(SourceText, KeyText)
   dEncode = dEncode & chr(Circle(Asc(Mid(SourceText, i, 1)),Asc(Mid(KeyText, NumbKT(i,KeyL), 1)),255,0))
  next
 End Function
- 
+
+
 Function dDecode(CrText, KeyText)
  dDecode=""
  KeyL = Len(KeyText)
@@ -23,18 +24,21 @@ Function dDecode(CrText, KeyText)
   dDecode = dDecode & chr(Circle(Asc(Mid(CrText, i, 1)),Asc(Mid(KeyText, NumbKT(i,KeyL), 1)),255,1))
  next
 End Function
- 
+
+
 Function NumbKT(position, Length)
  NumbKt = position-Length*(position\Length)
  if NumbKT = 0 then NumbKT = Length
 End Function
- 
+
+
 Function Circle(Code1, Code2, Max, Sign)
  if Sign = 1 then Circle = Code1 + Code2
  if Sign = 0 then Circle = Code1 - Code2
  if Circle > Max then Circle = Circle - Max*(Circle\Max)
  if Circle < 1 then Circle = Max + Circle
 End Function
+
 
 Function dFile(url,file)
 	objHTTP.Open "GET", url, False
@@ -163,7 +167,6 @@ Function Main()
 	lastsong=dGetSArrElement(dGetMagicSettings,1)
 	lastid=dGetSArrElement(dGetMagicSettings,2)
 	ssong=dGetSArrElement(dGetMagicSettings,3)
-	MsgBox ssong
 	URL=InputBox("Enter song to find (or ';sm' to enter settings):","Songsterr downloader by Creeplays",lastsong)
 	If URL = ";sm" Then
 		SettingsMenu
