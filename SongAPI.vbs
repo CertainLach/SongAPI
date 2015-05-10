@@ -73,6 +73,27 @@ Function dSearchOnSongsterr(song)
 End Function
 
 
+Function dSearchOnGtptabs(song)
+	dFile "http://www.gtp-tabs.ru/n/search/go.html?SearchForm%5BsearchIn%5D=tab&SearchForm%5BsearchString%5D="+song, "./temp_search.html"
+	Set songs = objFSO.OpenTextFile("./temp_search.html", 1)
+	songstext = songs.ReadAll
+	songstext = Split(Split(songstext, "<article id="+Chr(34)+"content"+Chr(34)+">")(1), "</article>")(0)
+	songsarr=Split(songstext,"<li>")
+	songs.Close
+	Songlist=""
+	skip=1
+	for each songnfo in songsarr
+		if not skip=1 Then
+			songname=Split(Split(songnfo, ".html"+Chr(34)+">")(2), "</a>")(0)
+			Songlist=Songlist+songname+vbcrlf
+		End if
+		skip=0
+	Next
+	dSearchOnGtptabs=Songlist
+	objFSO.DeleteFile "./temp_search.html"
+End Function
+
+
 Function dAllSongsWithNameSongsterr(song)
 	objPattern = "<?xml.*"
 	objRegExp.Pattern = objPattern 
@@ -121,10 +142,29 @@ Function dSetMagicSettings(num,nsetting)
 End Function
 
 
+Function dResetMagicSettings()
+	Set scriptfile = objFSO.OpenTextFile(Wscript.ScriptFullName, 1)
+	scriptfiletext = scriptfile.ReadAll
+	script=Split(scriptfiletext,"'Some fucking magic to save settings"+" in script file!")(0)
+	script=script+"'Some fucking magic to save settings"+" in script file!"+vbcrlf+"'s1"+vbcrlf+"'s2"+vbcrlf+"'s3"+vbcrlf+"'s4"+vbcrlf+"'s5"+vbcrlf+"'s6"+vbcrlf+"'s7"+vbcrlf+"'s8"+vbcrlf+"'s9"+vbcrlf+"'sa"+vbcrlf+"'sb"
+	scriptfile.Close
+	Set tf = objFSO.CreateTextFile(Wscript.ScriptFullName, True)
+  	tf.Write(script+settings) 
+  	tf.Close
+  	dSetMagicSettings 1,"Nino Rota - What Is A Youth"
+	dSetMagicSettings 2,"s48784"
+	dSetMagicSettings 3,"searchonsongsterr"
+	dSetMagicSettings 4,"sortauthors"
+	dSetMagicSettings 5,"dsearochgntpt"
+	dSetMagicSettings 11,"true"
+End Function
+
+
 Function dSongIdSongsterr(id)
 	objPattern = "s[0-9]*"
 	objRegExp.Pattern = objPattern
 	if objRegExp.test(id)=0 Then
+		msgbox id
 		Exit Function
 	End if
 	id=Split(id,"s")(1)
@@ -164,9 +204,16 @@ End Function
 
 
 Function Main()
+	firstlaunch=dGetSArrElement(dGetMagicSettings,11)
+	if not firstlaunch="false" Then
+		MsgBox "Hello, this is a script, that can download guitar tabs from various sites, you can find source code on https://github.com/Creeplays/SongAPI, bye!",0,"Songsterr downloader by Creeplays"
+		dResetMagicSettings
+		dSetMagicSettings 11,"false"
+	End if
 	lastsong=dGetSArrElement(dGetMagicSettings,1)
 	lastid=dGetSArrElement(dGetMagicSettings,2)
 	ssong=dGetSArrElement(dGetMagicSettings,3)
+	ssong2=dGetSArrElement(dGetMagicSettings,5)
 	URL=InputBox("Enter song to find (or ';sm' to enter settings):","Songsterr downloader by Creeplays",lastsong)
 	If URL = ";sm" Then
 		SettingsMenu
@@ -180,13 +227,18 @@ Function Main()
 	if ssong="searchonsongsterr" Then 
 		found=found+dGetSArrElement(dSearchOnSongsterr(URL),0)
 	End If
+	if ssong2="searchgtp" Then 
+		found=found+dSearchOnGtptabs(URL)
+	End If
 	If not cfound = 0 Then 
 		lastsong=URL
 		dSetMagicSettings 1,lastsong
 		If cfound = 1 Then
 			result=MsgBox("Only one song was found: "+vbcrlf+vbcrlf+"ID"+vbTab+vbTab+"Song"+vbcrlf+found+vbcrlf+"Do you want to download it?",4,"Songsterr downloader by Creeplays")
 			If result = 6 Then
-				dAllSongsWithNameSongsterr(URL)
+				if ssong="searchonsongsterr" Then 
+					dAllSongsWithNameSongsterr(URL)
+				End if
 				if cdownloaded=0 Then
 					MsgBox "Song has been not downloaded.",0,"Songsterr downloader by Creeplays"
 					WScript.Quit
@@ -200,6 +252,7 @@ Function Main()
 			End if
 		End if
 		ID=InputBox("Found songs: "+vbcrlf+vbcrlf+"ID"+vbTab+vbTab+"Song"+vbcrlf+found+vbcrlf+"Enter id to download (or ';da' to download all):","Songsterr downloader by Creeplays",lastid)
+		OID=ID
 		If ID = ";da" Then
 			if ssong="searchonsongsterr" Then 
 				dAllSongsWithNameSongsterr(URL)
@@ -212,7 +265,7 @@ Function Main()
 				dSongIdSongsterr ID
 			End If
 		End if
-		lastid=ID
+		lastid=OID
 		dSetMagicSettings 2,lastid
 		if cdownloaded=0 Then
 			MsgBox "Song has been not downloaded.",0,"Songsterr downloader by Creeplays"
@@ -234,10 +287,14 @@ End Function
 Function SettingsMenu()
 	Selected=InputBox("Commands:"+vbcrlf+vbcrlf+"';rs' to reset settings"+vbcrlf+"';sa' to enable/disable sorting by authors"+vbcrlf+"';ss' to enable/disable search on songsterr","Songsterr downloader by Creeplays",lastsong)
 	If Selected = ";rs" Then
-		dSetMagicSettings 1,"Nino Rota - What Is A Youth"
-		dSetMagicSettings 2,"s48784"
-		dSetMagicSettings 3,"searchonsongsterr"
-		dSetMagicSettings 4,"sortauthors"
+		Set scriptfile = objFSO.OpenTextFile(Wscript.ScriptFullName, 1)
+		scriptfiletext = scriptfile.ReadAll
+		script=Split(scriptfiletext,"'Some fucking magic to save settings"+" in script file!")(0)
+		script=script+"'Some fucking magic to save settings"+" in script file!"+vbcrlf+"'s1"+vbcrlf+"'s2"+vbcrlf+"'s3"+vbcrlf+"'s4"+vbcrlf+"'s5"+vbcrlf+"'s6"+vbcrlf+"'s7"+vbcrlf+"'s8"+vbcrlf+"'s9"+vbcrlf+"'sa"+vbcrlf+"'sb"
+		scriptfile.Close
+		Set tf = objFSO.CreateTextFile(Wscript.ScriptFullName, True)
+  		tf.Write(script+settings) 
+  		tf.Close
 		MsgBox "Settings has been resetted, quitting.",0,"Songsterr downloader by Creeplays"
 		WScript.Quit
 	End If
@@ -265,21 +322,35 @@ Function SettingsMenu()
 			WScript.Quit
 		End if
 	End If
+	If Selected = ";sg" Then
+		ssong=dGetSArrElement(dGetMagicSettings,5)
+		if not ssong = "searchgtp" Then
+			dSetMagicSettings 5,"searchgtp"
+			MsgBox "Search on gtp-tabs enabled, quitting.",0,"Songsterr downloader by Creeplays"
+			WScript.Quit
+		Else
+			dSetMagicSettings 5,"dsearochgntpt"
+			MsgBox "Search on gtp-tabs disabled, quitting.",0,"Songsterr downloader by Creeplays"
+			WScript.Quit
+		End if
+	End If
+		ssong2=dGetSArrElement(dGetMagicSettings,5)
 	WScript.Quit
 End Function
 
 
 Main
+
 WScript.Quit
 'Some fucking magic to save settings in script file!
-'8=>î!>C0îûî&70CîBîî(>DC7
-'A
-'@2.?05<;@<;4@A2??
-'?;>@-A@4;>?
-'
-'
-'
-'
-'
-'
-'
+'s1
+'s2
+'s3
+'s4
+'s5
+'s6
+'s7
+'s8
+'s9
+'sa
+'sb
