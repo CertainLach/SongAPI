@@ -1,0 +1,13 @@
+{
+  "name": "Songsterr hack",
+  "version": "1.0",
+  "author": "Creeplays #4pda",
+  "description": "All premium features! (Created by Creeplays (#4pda))",
+  "permissions": ["webRequest", "webRequestBlocking",
+                  "http://www.songsterr.com/a/wa/enabledFeatures?songId=*"],
+  "background": {
+    "scripts": ["background.js"]
+  },
+
+  "manifest_version": 2
+}
