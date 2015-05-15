@@ -1,8 +1,7 @@
-# SongAPI
-Downloading from various guitar tab sites using VBS.
-Contains very ugly code, becuase currently i learning VBScripting.
-Sorry for bad english.
-# Currently supported sites:
-Songsterr
-# WIP:
-GTP-Tabs
+There was a 3 folders:
+# SongsterrDownloader
+A google chrome extension to download songs from songsterr.com
+# SongsterrPremium
+A google chrome extension to unlock premium features on songsterr.com
+# StandaloneDownloader
+Deprecated project, do not use.
