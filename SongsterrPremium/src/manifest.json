@@ -1,13 +1,20 @@
 {
   "name": "Songsterr hack",
-  "version": "1.0",
-  "author": "Creeplays #4pda",
-  "description": "All premium features! (Created by Creeplays (#4pda))",
-  "permissions": ["webRequest", "webRequestBlocking",
-                  "http://www.songsterr.com/a/wa/enabledFeatures?songId=*"],
+  "version": "1.1",
+  "author": "Creeplays",
+  "description": "All premium features! (Created by F6CF (aka Creeplays))",
+  "permissions": ["webRequest", "webRequestBlocking", "http://www.songsterr.com/*","https://www.songsterr.com/*"],
   "background": {
     "scripts": ["background.js"]
   },
-
+  "content_scripts": [
+    {
+      "matches": [
+        "http://www.songsterr.com/a/wa/*","https://www.songsterr.com/a/wa/*",
+        "http://www.songsterr.com/a/wsa/*","https://www.songsterr.com/a/wsa/*"
+      ],
+      "js": ["patchState.js"]
+    }
+  ],
   "manifest_version": 2
 }
