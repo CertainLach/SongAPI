@@ -8,7 +8,7 @@ function f6cf___INITIAL_STATE___applyPatch(){
         __INITIAL_STATE__.user.hasPlus=true;
 }
 let patcher = document.createElement('script');
-patcher.innerHTML = applyPatch+';f6cf___INITIAL_STATE___applyPatch()';
+patcher.innerHTML = f6cf___INITIAL_STATE___applyPatch+';f6cf___INITIAL_STATE___applyPatch()';
 //Because it not always works as excepted
 // patcher.onload = function() {
 //     this.remove();
