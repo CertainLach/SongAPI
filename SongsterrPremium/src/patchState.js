@@ -1,8 +1,7 @@
 //New (React.JS based) songsterr
-console.log('Hello, songsterr admins! I love songsterr, but i am student, and it costs sooo much...');
 function f6cf___INITIAL_STATE___applyPatch(){
     //New patch (yay)
-    Object.keys(window).filter(k=>k.indexOf('__')===0).forEach(k=>window[k]&&window[k].user&&window[k].user.hasPlus===false&&(window[k].user.hasPlus=true));
+    Object.keys(window).filter(k=>/^_[a-z0-9]+_$/i.test(k)).forEach(k=>window[k]&&window[k].user&&window[k].user.hasPlus===false&&(window[k].user.hasPlus=true));
     //I'll just leave it here
     if(window.__INITIAL_STATE__&&window.__INITIAL_STATE__.user)
         __INITIAL_STATE__.user.hasPlus=true;
