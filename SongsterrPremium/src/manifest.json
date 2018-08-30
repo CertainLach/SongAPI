@@ -1,8 +1,8 @@
 {
-  "name": "Songsterr hack",
-  "version": "1.1",
-  "author": "Creeplays",
-  "description": "All premium features! (Created by F6CF (aka Creeplays))",
+  "name": "Songsterr premium hack",
+  "version": "1.2",
+  "author": "CertainLach",
+  "description": "Patch redux state to get Songsterr premium features for free",
   "permissions": ["webRequest", "webRequestBlocking", "http://www.songsterr.com/*", "http://songsterr.com/*","https://www.songsterr.com/*","https://songsterr.com/*"],
   "background": {
     "scripts": ["background.js"]
