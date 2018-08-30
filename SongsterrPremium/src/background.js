@@ -5,6 +5,8 @@ chrome.webRequest.onBeforeRequest.addListener(
     urls: [
       "http://www.songsterr.com/a/wa/enabledFeatures?songId=*",
       "https://www.songsterr.com/a/wa/enabledFeatures?songId=*",
+      "http://songsterr.com/a/wa/enabledFeatures?songId=*",
+      "https://songsterr.com/a/wa/enabledFeatures?songId=*",
     ]
   },
   ["blocking"]

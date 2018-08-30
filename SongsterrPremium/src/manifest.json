@@ -3,7 +3,7 @@
   "version": "1.1",
   "author": "Creeplays",
   "description": "All premium features! (Created by F6CF (aka Creeplays))",
-  "permissions": ["webRequest", "webRequestBlocking", "http://www.songsterr.com/*","https://www.songsterr.com/*"],
+  "permissions": ["webRequest", "webRequestBlocking", "http://www.songsterr.com/*", "http://songsterr.com/*","https://www.songsterr.com/*","https://songsterr.com/*"],
   "background": {
     "scripts": ["background.js"]
   },
@@ -11,7 +11,9 @@
     {
       "matches": [
         "http://www.songsterr.com/a/wa/*","https://www.songsterr.com/a/wa/*",
-        "http://www.songsterr.com/a/wsa/*","https://www.songsterr.com/a/wsa/*"
+        "http://songsterr.com/a/wa/*","https://songsterr.com/a/wa/*",
+        "http://www.songsterr.com/a/wsa/*","https://www.songsterr.com/a/wsa/*",
+        "http://songsterr.com/a/wsa/*","https://songsterr.com/a/wsa/*"
       ],
       "js": ["patchState.js"]
     }
