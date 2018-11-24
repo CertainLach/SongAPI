@@ -342,14 +342,14 @@ Main
 
 WScript.Quit
 'Some fucking magic to save settings in script file!
-'s1
-'s2
-'s3
-'s4
-'s5
+'?8A0C4
+'Aэюю
+'@2.?05<;@<;4@A2??
+'?;>@-A@4;>?
+'/>0,=:.329?;?
 's6
 's7
 's8
 's9
 'sa
-'sb
+'50;B4
