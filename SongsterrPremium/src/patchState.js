@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name Songsterr premium hack
-// @version 1.3
+// @version 1.4
 // @description Patch redux state to get Songsterr premium features for free
 // @include *songsterr.com*
 // @include songsterr.com*

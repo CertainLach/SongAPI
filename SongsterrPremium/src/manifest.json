@@ -1,21 +1,43 @@
 {
   "name": "Songsterr premium hack",
-  "version": "1.2",
+  "version": "1.4",
   "author": "CertainLach",
-  "description": "Patch redux state to get Songsterr premium features for free",
-  "permissions": ["webRequest", "webRequestBlocking", "http://www.songsterr.com/*", "http://songsterr.com/*","https://www.songsterr.com/*","https://songsterr.com/*"],
+  "description": "Songsterr Plus features unlocker and guitar pro downloader",
+  "permissions": [
+    "activeTab",
+    "declarativeContent",
+    "webRequest",
+    "webRequestBlocking",
+    "http://www.songsterr.com/*",
+    "http://songsterr.com/*",
+    "https://www.songsterr.com/*",
+    "https://songsterr.com/*"
+  ],
   "background": {
-    "scripts": ["background.js"]
+    "scripts": [
+      "oldSongsterrDemoRedirector.js",
+      "songDownloader.js"
+    ]
+  },
+  "browser_action": {
+    "default_title": "Download this song"
   },
   "content_scripts": [
     {
       "matches": [
-        "http://www.songsterr.com/a/wa/*","https://www.songsterr.com/a/wa/*",
-        "http://songsterr.com/a/wa/*","https://songsterr.com/a/wa/*",
-        "http://www.songsterr.com/a/wsa/*","https://www.songsterr.com/a/wsa/*",
-        "http://songsterr.com/a/wsa/*","https://songsterr.com/a/wsa/*"
+        "http://www.songsterr.com/a/wa/*",
+        "https://www.songsterr.com/a/wa/*",
+        "http://songsterr.com/a/wa/*",
+        "https://songsterr.com/a/wa/*",
+        "http://www.songsterr.com/a/wsa/*",
+        "https://www.songsterr.com/a/wsa/*",
+        "http://songsterr.com/a/wsa/*",
+        "https://songsterr.com/a/wsa/*",
+        "https://*.cloudfront.net/*"
       ],
-      "js": ["patchState.js"]
+      "js": [
+        "patchState.js"
+      ]
     }
   ],
   "manifest_version": 2

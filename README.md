@@ -1,10 +1,7 @@
 There was a 3 folders:
 
-# SongsterrDownloader
-A google chrome extension to download songs from songsterr.com
-
 # SongsterrPremium
-A google chrome/firefox extension to unlock premium features on songsterr.com
+A google chrome/firefox extension to unlock premium features, and add ability to download songs on songsterr.com
 ## Downloads
 - [Firefox](https://github.com/CertainLach/SongAPI/blob/master/SongsterrPremium/release/extension.xpi)
 - [GoogleChrome](https://github.com/CertainLach/SongAPI/blob/master/SongsterrPremium/release/extension.crx)
