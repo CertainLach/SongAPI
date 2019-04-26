@@ -1,4 +1,4 @@
-There was a 3 folders:
+<div style="text-align:center"><img width="200" height="auto" src="https://github.com/CertainLach/SongAPI/blob/master/lach_icon_x10.png" /></div>
 
 # SongsterrPremium
 A google chrome/firefox extension to unlock premium features, and add ability to download songs on songsterr.com
