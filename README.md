@@ -7,7 +7,7 @@ A google chrome/firefox extension to unlock premium features, and add ability to
 - [GoogleChrome](https://github.com/CertainLach/SongAPI/blob/master/SongsterrPremium/release/extension.crx)
 - [Opera](https://github.com/CertainLach/SongAPI/blob/master/SongsterrPremium/release/extension.nex)
 ## Available in built-in extension stores
-- [GoogleChrome](https://chrome.google.com/webstore/detail/songsterr-hack/obknpodhecdegikcgibopjflckciigdb)
+- ~~[GoogleChrome](https://chrome.google.com/webstore/detail/songsterr-hack/obknpodhecdegikcgibopjflckciigdb)~~
 
 # StandaloneDownloader
 Deprecated project, do not use.
