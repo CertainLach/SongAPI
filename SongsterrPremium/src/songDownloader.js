@@ -40,7 +40,7 @@ function f6cf___INITIAL_STATE___download() {
     let apiUrl = `https://www.songsterr.com/a/ra/player/songrevision/${revisionId}.xml`;
     // Using promise since old versions of chrome doesn't supports async/await
     fetch(apiUrl).then(res => res.text()).then(data => {
-        let url = data.match(/<attachmentUrl>(.+?.gp[t54x])<\/attachmentUrl>/);
+        let url = data.match(/<attachmentUrl>(.+?.gp[t354x])<\/attachmentUrl>/);
         if (!url) {
             alert('Couldn\'t find download url!');
             return;
